@@ -22,7 +22,7 @@ public class ConstantUtils {
     public static final String CLAIM_KEY_MOBILE = "mobile"; // 5分钟
     public static final String CLAIM_KEY_INVITE_CODE = "invitecode"; // 5分钟
     public static final String SECRET_ODEC = "E7Q9SRSCVMOSUSV0MGYH0WAFZQJETH77R6F6MCJ631E29O0S";
-    static private String FILENAME="邀请码绑定_{0}.xlsx";
+    static private String FILENAME="邀请码绑定_{0}.xls";
 
 
     public static SecretKey getSecretKey(String code) {
