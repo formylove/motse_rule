@@ -1,0 +1,30 @@
+server:
+  port: 2222
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jfa_lcs?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 222000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+
+
+
+sms:
+  account: N116232_N6352032
+  password: LeT0BoiaRJ046b
+  url: http://smssh1.253.com/msg/send/json
+  template: 【吉富通】您的验证码为：{0}，该验证码5分钟内有效，请勿泄露给他人。
+export:
+  cron: 10 * * * * ?
+  directory: g:\\{0}.xlsx
