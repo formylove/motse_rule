@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.thizgroup</groupId>
-    <artifactId>binding</artifactId>
+    <artifactId>promotion</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>coderecorder</name>
+    <name>promotion</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
