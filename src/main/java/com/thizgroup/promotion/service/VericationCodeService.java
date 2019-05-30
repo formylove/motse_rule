@@ -63,7 +63,7 @@ public class VericationCodeService {
         }
         if (!smsSendResponse.getCode().equals("0")) {
                 throw new CommonException(
-                        Integer.parseInt(smsSendResponse.getCode()), smsSendResponse.getErrorMsg());
+                        Integer.parseInt(smsSendResponse.getCode()), ErrorCode.getMessageByCode(Integer.valueOf(smsSendResponse.getCode())));
             }
         return verifyCode;
     }

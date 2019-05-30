@@ -58,12 +58,13 @@ VericationCodeService vericationCodeService;
         Date expireDate = new Date();
         // 有效时间5分钟；验证码+固定字符作为加密密钥
         expireDate.setTime(System.currentTimeMillis() + ConstantUtils.SMS_VALID_TIME);
+    System.out.println(expireDate);
         Map claims = new HashMap<>();
         claims.put(ConstantUtils.CLAIM_KEY_MOBILE,mobile);
         String smsToken =
                 Jwts.builder()
                         .setClaims(claims)
-                        .setExpiration(expireDate)
+                        .setExpiration(expireDate)//必须在setClaims之前，否则不生效
                         .signWith(ConstantUtils.getSecretKey(vericationCode))
                         .compact();
 

@@ -2,6 +2,7 @@ package com.thizgroup.promotion.exception;
 
 /** Created by jf on 2019/4/24. */
 public enum ErrorCode {
+  INVALID_MOBILE_NUM(108, "mobile.not.valid"),
   WRONG_MOBILE_NUM(1000, "wrong.mobile.num"),
   VERIFICATION_CODE_EXPIRED(2000, "verification.code.expired"),
   VERIFICATION_CODE_UNMATCHED(3000, "verification.code.unmatched"),
@@ -25,19 +26,16 @@ public enum ErrorCode {
     return message;
   }
 
-  /**
-   * 获取错误信息对应国际化配置
-   *
-   * @param message
-   * @return
-   */
-  public static String getI18nMessage(String message) {
-    ErrorCode[] values = ErrorCode.values();
-    for (ErrorCode value : values) {
-      if (value.getMessage().equals(message)) {
-        return value.getMessage();
+
+  public static String getMessageByCode(int code) {
+    for(ErrorCode errorCode:ErrorCode.values()){
+      if(errorCode.getCode()==code)
+      {
+        return errorCode.getMessage();
       }
     }
-    return message;
+    return null;
   }
+
+
 }

@@ -12,49 +12,43 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * Created by jf on 2019/4/29.
- */
+/** Created by jf on 2019/4/29. */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
+  @Autowired private MessageSource messageSource;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
+  @InitBinder
+  public void initBinder(WebDataBinder binder) {}
+
+  @ExceptionHandler(value = CommonException.class)
+  @ResponseBody
+  public StatusResponse handleAppException(CommonException e) {
+    String message = I18nMessage(e.getMessage());
+    return new StatusResponse(e.getCode(), message);
+  }
+
+  @ExceptionHandler(Exception.class)
+  public StatusResponse handleException(Exception e) {
+    log.error("handleException :", e);
+    return new StatusResponse(1000, e.getMessage());
+  }
+
+  /**
+   * 国际化接口输出
+   *
+   * @param messageCode
+   * @return
+   */
+  private String I18nMessage(String messageCode) {
+    String localeMessage=null;
+    try {
+      localeMessage = messageSource.getMessage(messageCode, null, LocaleContextHolder.getLocale());
+    } catch (NoSuchMessageException e1) {
+      e1.printStackTrace();
+      log.error("no such i18n config:", e1);
     }
-
-
-    @ExceptionHandler(value = CommonException.class)
-    @ResponseBody
-    public StatusResponse handleAppException(CommonException e) {
-        log.error("businessExceptionHandle :", e);
-        String message = I18nMessage(e.getMessage());
-        return new StatusResponse(e.getCode(), message);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public StatusResponse handleException(Exception e) {
-        log.error("handleException :", e);
-        return new StatusResponse(1000, e.getMessage());
-    }
-
-    /**
-     * 国际化接口输出
-     *
-     * @param message2
-     * @return
-     */
-    private String I18nMessage(String message2) {
-        try {
-            message2 = messageSource.getMessage(message2, null, LocaleContextHolder.getLocale());
-        } catch (NoSuchMessageException e1) {
-            e1.printStackTrace();
-            log.error("no such i18n config:", e1);
-        }
-        return message2;
-    }
-
+    return localeMessage;
+  }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 3322
+  port: 2000
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,4 +27,4 @@ sms:
   template: 【吉富通】您的验证码为：{0}，该验证码5分钟内有效，请勿泄露给他人。
 export:
   cron: 1 * * * * ?
-  directory: d:\\
+  directory: o:\\

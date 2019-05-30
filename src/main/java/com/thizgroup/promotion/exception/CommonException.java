@@ -1,6 +1,7 @@
 package com.thizgroup.promotion.exception;
 
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * @author : Sarah Xu
@@ -18,6 +19,12 @@ public class CommonException extends  RuntimeException{
 
     public CommonException(ErrorCode errorCode) {
         super(errorCode.getMessage());
+        this.errMsg=errorCode.getMessage();
         this.code = errorCode.getCode();
     }
+    @Override
+    public String getMessage(){
+        return errMsg;
+    }
+
 }

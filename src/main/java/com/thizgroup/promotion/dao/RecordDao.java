@@ -24,9 +24,9 @@ public class RecordDao {
 
   public void addRecord(String mobile, String inviteCode) {
       //todo
-//      if(recordRepository.findAllByMobileAndAndInviteCode(mobile,inviteCode).isPresent()){
-//          throw new CommonException(ErrorCode.MOBILE_AND_CODE_HAS_BINDED);
-//      }
+      if(recordRepository.findAllByMobileAndAndInviteCode(mobile,inviteCode).isPresent()){
+          throw new CommonException(ErrorCode.MOBILE_AND_CODE_HAS_BINDED);
+      }
 
 
       //暂时为可重复绑定
