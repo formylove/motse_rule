@@ -14,12 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author : Sarah Xu
@@ -28,10 +23,10 @@ import java.time.format.DateTimeFormatter;
 @Component
 @EnableScheduling // 1.开启定时任务
 @EnableAsync // 2.开启多线程
-@PropertySource(value = "classpath:application-dev.yml")//todo
+@PropertySource(value = "classpath:application-dev.yml") // todo
 public class ExportExcelSchedule {
-  @Autowired
-  ExportExcelService exportExcelService;
+  @Autowired ExportExcelService exportExcelService;
+
   @Value("${export.directory}")
   private String directory;
 

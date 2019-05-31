@@ -8,8 +8,7 @@ public enum ErrorCode {
   VERIFICATION_CODE_UNMATCHED(3000, "verification.code.unmatched"),
   NOT_PREVIOUS_MOBILE(4000, "not.previous.mobile"),
   MOBILE_HAS_BINDED(5000, "mobile.has.binded"),
-  MOBILE_AND_CODE_HAS_BINDED(6000, "mobile.verification.code.has.binded")
-  ;
+  MOBILE_AND_CODE_HAS_BINDED(6000, "mobile.verification.code.has.binded");
   private final int code;
   private final String message;
 
@@ -26,16 +25,12 @@ public enum ErrorCode {
     return message;
   }
 
-
   public static String getMessageByCode(int code) {
-    for(ErrorCode errorCode:ErrorCode.values()){
-      if(errorCode.getCode()==code)
-      {
+    for (ErrorCode errorCode : ErrorCode.values()) {
+      if (errorCode.getCode() == code) {
         return errorCode.getMessage();
       }
     }
     return null;
   }
-
-
 }

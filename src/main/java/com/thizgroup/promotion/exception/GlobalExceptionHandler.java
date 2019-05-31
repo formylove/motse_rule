@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
    * @return
    */
   private String I18nMessage(String messageCode) {
-    String localeMessage=null;
+    String localeMessage = null;
     try {
       localeMessage = messageSource.getMessage(messageCode, null, LocaleContextHolder.getLocale());
     } catch (NoSuchMessageException e1) {

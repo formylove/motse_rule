@@ -10,10 +10,11 @@ import java.util.Optional;
 /**
  * @author : Sarah Xu
  * @date : 2019-05-28
- **/
+ */
 @Repository
-public interface RecordRepository   extends JpaRepository<RecordEntity, String>, JpaSpecificationExecutor<RecordEntity> {
-    public Optional<RecordEntity> findAllByMobile(String mobile);
+public interface RecordRepository
+    extends JpaRepository<RecordEntity, String>, JpaSpecificationExecutor<RecordEntity> {
+  public Optional<RecordEntity> findAllByMobile(String mobile);
 
-    public Optional<RecordEntity> findAllByMobileAndAndInviteCode(String mobile,String inviteCode);
+  public Optional<RecordEntity> findAllByMobileAndAndInviteCode(String mobile, String inviteCode);
 }

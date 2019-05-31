@@ -1,7 +1,5 @@
 package com.thizgroup.promotion.util;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import java.util.Random;
 
 /**
@@ -10,8 +8,6 @@ import java.util.Random;
  */
 public class VericationCodeGenerator {
   private static final String SOURCE = "1234567890";
-
-
 
   public static String generate() {
     StringBuilder code = new StringBuilder();
@@ -26,6 +22,4 @@ public class VericationCodeGenerator {
     System.out.println(generate());
     System.out.println(generate());
   }
-
-
 }

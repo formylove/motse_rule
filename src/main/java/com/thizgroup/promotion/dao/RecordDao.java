@@ -19,20 +19,18 @@ import java.util.List;
  */
 @Repository
 public class RecordDao {
-  @Autowired
-  RecordRepository recordRepository;
+  @Autowired RecordRepository recordRepository;
 
   public void addRecord(String mobile, String inviteCode) {
-      //todo
-      if(recordRepository.findAllByMobileAndAndInviteCode(mobile,inviteCode).isPresent()){
-          throw new CommonException(ErrorCode.MOBILE_AND_CODE_HAS_BINDED);
-      }
+    // 相同邀请码和手机号不能重复绑定
+    if (recordRepository.findAllByMobileAndAndInviteCode(mobile, inviteCode).isPresent()) {
+      throw new CommonException(ErrorCode.MOBILE_AND_CODE_HAS_BINDED);
+    }
 
-
-      //暂时为可重复绑定
-//    if (recordRepository.findAllByMobile(mobile).isPresent()) {
-//      throw new CommonException(ErrorCode.MOBILE_HAS_BINDED);
-//    }
+    // 暂时为可重复绑定
+    //    if (recordRepository.findAllByMobile(mobile).isPresent()) {
+    //      throw new CommonException(ErrorCode.MOBILE_HAS_BINDED);
+    //    }
     recordRepository.saveAndFlush(
         RecordEntity.builder().inviteCode(inviteCode).mobile(mobile).build());
   }

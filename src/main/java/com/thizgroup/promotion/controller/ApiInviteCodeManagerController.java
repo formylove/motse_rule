@@ -16,28 +16,30 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author : Sarah Xu
  * @date : 2019-05-28
- **/
+ */
 @RestController
 @RequestMapping("/binding/manager/")
 public interface ApiInviteCodeManagerController {
-    @PostMapping(value = "/record", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public StatusResponse addRecord(@RequestBody RecordAddingRequest addingRequest);
+  @PostMapping(value = "/record", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public StatusResponse addRecord(@RequestBody RecordAddingRequest addingRequest);
 
-    @GetMapping(value = "/records/",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RecordsResponse getRecords(RecordRetrieveRequest req);
+  @GetMapping(value = "/records/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public RecordsResponse getRecords(RecordRetrieveRequest req);
 
-    @GetMapping(value = "/mobile/{mobile}/verification/code", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public SendVerificationCodeResponseBean getVerificationCode(@PathVariable("mobile") String mobile);
+  @GetMapping(
+      value = "/mobile/{mobile}/verification/code",
+      produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public SendVerificationCodeResponseBean getVerificationCode(
+      @PathVariable("mobile") String mobile);
 
-    @GetMapping(value = "/excel", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String  getExcel(HttpServletResponse response);
+  @GetMapping(value = "/excel", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public String getExcel(HttpServletResponse response);
 
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    class SendVerificationCodeResponseBean {
-        String smsToken;
-    }
+  @Data
+  @Builder
+  @NoArgsConstructor
+  @AllArgsConstructor
+  class SendVerificationCodeResponseBean {
+    String smsToken;
+  }
 }
-
