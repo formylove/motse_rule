@@ -34,16 +34,16 @@ public interface PromotionApi extends RestfulApi {
   public class RecordAddingRequest {
     // 手机号
     @ApiModelProperty("手机号")
-    @Pattern(regexp = "\\d+", message = "{validation.error.invite.code")
+    @Pattern(regexp = "\\d+", message = "validation.error.mobile")
     private String mobile;
 
     // 邀请码
-    @Pattern(regexp = "[A-Z\\d]{6}", message = "{validation.error.invite.code}")
+    @Pattern(regexp = "[A-Z\\d]{6}", message = "validation.error.invite.code")
     @ApiModelProperty("邀请码")
     private String inviteCode;
 
     // 验证码
-    @Length(min = 6, max = 6, message = "{validation.error.verification.code.length}")
+    @Length(min = 6, max = 6, message = "validation.error.verification.code.length")
     @ApiModelProperty("验证码")
     private String verificationCode;
 
