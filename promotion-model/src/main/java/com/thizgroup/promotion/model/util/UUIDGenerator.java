@@ -10,6 +10,7 @@ import java.util.UUID;
 /**
  * @author : Sarah Xu
  * @date : 2019-05-14
+ * 主键生成放到dao层，可参考tsp
  */
 public class UUIDGenerator implements IdentifierGenerator {
   @Override

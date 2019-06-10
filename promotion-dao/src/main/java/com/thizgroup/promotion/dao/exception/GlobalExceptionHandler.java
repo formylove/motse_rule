@@ -22,6 +22,10 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 /** Created by jf on 2019/4/29. */
+
+/**
+ * api层全局异常拦截，移到api层
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

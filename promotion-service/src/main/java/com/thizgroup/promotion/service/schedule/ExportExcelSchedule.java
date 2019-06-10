@@ -2,6 +2,7 @@ package com.thizgroup.promotion.service.schedule;
 
 import com.thizgroup.promotion.model.util.ConstantUtils;
 import com.thizgroup.promotion.service.service.ExportExcelService;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -30,18 +31,20 @@ public class ExportExcelSchedule {
   @Value("${export.directory}")
   private String directory;
 
-  @Async
+//  @Async  此处加@Async没有用
   @Scheduled(cron = "${export.cron}")
   public void export() throws InterruptedException {
-    FileOutputStream fos = null;
+//java7 try with resource
+    try (FileOutputStream fos = new FileOutputStream(
+        new File(directory + ConstantUtils.generateExcelFileName()));) {
+      exportExcelService.exportExcel(fos);
+    } catch (IOException e) {
 
-    try {
-      fos = new FileOutputStream(new File(directory + ConstantUtils.generateExcelFileName()));
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
     }
-    exportExcelService.exportExcel(fos);
 
+/**
+ * no system.out ,only log
+ */
     System.out.println(
         "第一个定时任务开始 : "
             + LocalDateTime.now().toLocalTime()
