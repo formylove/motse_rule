@@ -22,7 +22,6 @@ public abstract class BaseEntity {
       unique = true,
       nullable = false,
       updatable = false,
-      length = 19,
       columnDefinition = "BIGINT")
   protected long id;
 
