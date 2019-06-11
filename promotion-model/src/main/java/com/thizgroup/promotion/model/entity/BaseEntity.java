@@ -23,7 +23,7 @@ public abstract class BaseEntity {
       nullable = false,
       updatable = false,
       length = 19,
-      columnDefinition = "CHAR(19)")
+      columnDefinition = "BIGINT")
   protected long id;
 
   /* Soft delete flag */
