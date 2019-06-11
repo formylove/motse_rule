@@ -1,14 +1,11 @@
-package com.thizgroup.promotion.dao.bean;
+package com.thizgroup.promotion.api.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * ResponseBean应放到api层，不用放到dao层
- * @param <E>
- */
+
 @Data
 @ResponseBody
 public class ResponseBean<E> {

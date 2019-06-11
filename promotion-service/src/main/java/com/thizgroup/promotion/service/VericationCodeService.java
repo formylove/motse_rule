@@ -1,9 +1,9 @@
-package com.thizgroup.promotion.service.service;
+package com.thizgroup.promotion.service;
 
 import com.thizgroup.promotion.dao.exception.CommonException;
 import com.thizgroup.promotion.dao.exception.ErrorCode;
 import com.thizgroup.promotion.dao.exception.JsonException;
-import com.thizgroup.promotion.model.util.ConstantUtils;
+import com.thizgroup.promotion.dao.util.ConstantUtils;
 import com.thizgroup.promotion.service.sms.SmsSendRequest;
 import com.thizgroup.promotion.service.sms.SmsSendResponse;
 import com.thizgroup.promotion.service.util.JsonUtils;

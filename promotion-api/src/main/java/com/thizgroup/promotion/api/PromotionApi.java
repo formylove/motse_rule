@@ -1,7 +1,7 @@
 package com.thizgroup.promotion.api;
 
 import com.thizgroup.promotion.dao.bean.RecordBean;
-import com.thizgroup.promotion.dao.bean.ResponseBean;
+import com.thizgroup.promotion.api.bean.ResponseBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;

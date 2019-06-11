@@ -1,4 +1,4 @@
-package com.thizgroup.promotion.model.util;
+package com.thizgroup.promotion.dao.util;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -11,11 +11,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-/**
- * @author : Sarah Xu
- * @date : 2019-05-28
- model包下只放与实体相关的类，其他的需要移除出去
- */
+
 public class ConstantUtils {
   public static final long SMS_VALID_TIME = 300000L; // 5分钟
   public static final String TEST_VERIFY_CODE = "888888";

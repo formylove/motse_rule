@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 @Repository
 public interface RecordEntityRepository
-    extends JpaRepository<RecordEntity, String>, JpaSpecificationExecutor<RecordEntity> {
+    extends BaseEntityRepository<RecordEntity> {
   public Optional<RecordEntity> findAllByMobile(String mobile);
 
   public Optional<RecordEntity> findAllByMobileAndAndInviteCode(String mobile, String inviteCode);

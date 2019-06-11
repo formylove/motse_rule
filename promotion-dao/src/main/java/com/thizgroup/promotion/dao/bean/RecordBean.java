@@ -1,8 +1,9 @@
 package com.thizgroup.promotion.dao.bean;
 
 import com.thizgroup.promotion.model.entity.RecordEntity;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @author : Sarah Xu
@@ -10,7 +11,7 @@ import lombok.Data;
  */
 @Data
 public class RecordBean implements Serializable {
-  private String id;
+  private Long id;
   // 手机号
   private String mobile;
   // 邀请码
