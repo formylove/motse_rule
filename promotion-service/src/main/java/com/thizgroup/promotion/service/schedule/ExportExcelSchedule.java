@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
  */
 @Component
 @EnableScheduling // 1.开启定时任务
-@EnableAsync // 2.开启多线程
+//@EnableAsync // 2.开启多线程
 @PropertySource(value = "classpath:application-dev.yml") // todo
 @Slf4j
 public class ExportExcelSchedule {
@@ -32,7 +32,7 @@ public class ExportExcelSchedule {
   @Value("${export.directory}")
   private String directory;
 
-  @Async
+//  @Async
   @Scheduled(cron = "${export.cron}")
   public void export() throws InterruptedException {
 
