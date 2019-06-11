@@ -8,8 +8,8 @@ import lombok.Data;
  */
 @Data
 public class CommonException extends RuntimeException {
-  private Integer code = 0;
-  private String errMsg = "OK";
+  private Integer code;
+  private String errMsg;
 
   public CommonException(Integer code, String errMsg) {
     this.code = code;

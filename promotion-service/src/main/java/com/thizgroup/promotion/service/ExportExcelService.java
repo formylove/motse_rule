@@ -1,4 +1,4 @@
-package com.thizgroup.promotion.service.service;
+package com.thizgroup.promotion.service;
 
 import com.thizgroup.promotion.dao.RecordDao;
 import com.thizgroup.promotion.dao.bean.RecordBean;

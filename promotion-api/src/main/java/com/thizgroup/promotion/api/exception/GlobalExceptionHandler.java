@@ -1,15 +1,15 @@
-package com.thizgroup.promotion.dao.exception;
+package com.thizgroup.promotion.api.exception;
 
-import com.thizgroup.promotion.dao.bean.ResponseBean;
-import com.thizgroup.promotion.model.util.ConstantUtils;
+import com.thizgroup.promotion.api.bean.ResponseBean;
+import com.thizgroup.promotion.dao.exception.CommonException;
+import com.thizgroup.promotion.dao.exception.ErrorCode;
+import com.thizgroup.promotion.dao.util.ConstantUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,11 +17,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
-
-/** Created by jf on 2019/4/29. */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -40,10 +35,7 @@ public class GlobalExceptionHandler {
     public ResponseBean handleException(MethodArgumentNotValidException e) {
       BindingResult result = e.getBindingResult();
         FieldError fieldError = result.getFieldErrors().get(0);
-        Locale currentLocale =  LocaleContextHolder.getLocale();
-        String localizedErrorMessage = messageSource.getMessage(fieldError.getDefaultMessage(),null, currentLocale);
-
-        return new ResponseBean(1001,localizedErrorMessage);
+        return new ResponseBean(1001,I18nMessage(fieldError.getDefaultMessage()));
     }
 
 

@@ -1,24 +1,16 @@
 package com.thizgroup.promotion.api;
 
-import com.thizgroup.promotion.model.util.ConstantUtils;
+import com.thizgroup.promotion.dao.util.ConstantUtils;
 import com.thizgroup.promotion.service.util.JsonUtils;
 import org.json.JSONObject;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = PromotionApplication.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@ActiveProfiles("dev")
 public class PromotionApplicationTests extends BaseTest {
 
   @Test

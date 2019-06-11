@@ -44,9 +44,11 @@ public class RecordDao {
     //    if (recordRepository.findAllByMobile(mobile).isPresent()) {
     //      throw new CommonException(ErrorCode.MOBILE_HAS_BINDED);
     //    }
-    RecordEntity recordEntity =
-        recordEntityRepository.saveAndFlush(
-            RecordEntity.builder().inviteCode(inviteCode).mobile(mobile).build());
+      RecordEntity recordEntity = recordEntityRepository.newEntity();
+      recordEntity.setInviteCode(inviteCode);
+      recordEntity.setMobile(mobile);
+     recordEntity =
+        recordEntityRepository.saveAndFlush(recordEntity);
   }
   /**
    * @Description: 获取条件过滤后的绑定记录 @Param: [inviteCodes, beginTime, endTime]

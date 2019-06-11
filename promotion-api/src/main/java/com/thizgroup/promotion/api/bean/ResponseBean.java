@@ -1,9 +1,10 @@
-package com.thizgroup.promotion.dao.bean;
+package com.thizgroup.promotion.api.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Data
 @ResponseBody
