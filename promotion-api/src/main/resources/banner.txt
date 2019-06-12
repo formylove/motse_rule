@@ -14,4 +14,4 @@
 
 端口号: ${server.port}
 环境: ${spring.profiles.active}
-数据库: ${spring.jpa.hibernate.ddl-auto}
+数据库创建方式: ${spring.jpa.hibernate.ddl-auto}

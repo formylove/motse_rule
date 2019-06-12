@@ -1,4 +1,4 @@
-package com.thizgroup.promotion.api.config;
+package com.thizgroup.promotion.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
