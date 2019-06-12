@@ -38,13 +38,11 @@ public class ExportExcelService {
    * @return: void @Author: Sarah Xu @Date: 2019/6/5
    */
   public void exportExcel(OutputStream destination) {
-    LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
-    String currentDate = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
     // 创建新工作簿
     HSSFWorkbook workbook = new HSSFWorkbook();
     // 新建工作表
-    final HSSFSheet sheet = workbook.createSheet("hello");
+    final HSSFSheet sheet = workbook.createSheet("绑定记录");
     sheet.setColumnWidth(0, 3350);
     sheet.setColumnWidth(1, 3100);
     sheet.setColumnWidth(2, 5200);

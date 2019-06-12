@@ -1,9 +1,6 @@
 package com.thizgroup.promotion.model.entity;
 
-import com.thizgroup.promotion.model.converter.BooleanStringConverter;
-import com.thizgroup.promotion.model.converter.InstantConverter;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -25,17 +22,11 @@ public abstract class BaseEntity {
       unique = true,
       nullable = false,
       updatable = false,
-      length = 64,
-      columnDefinition = "CHAR(64)")
-  @GeneratedValue(generator = "idGenerator")
-  @GenericGenerator(
-      name = "idGenerator",
-      strategy = "com.thizgroup.promotion.model.util.UUIDGenerator")
-  protected String id;
+      columnDefinition = "BIGINT")
+  protected long id;
 
   /* Soft delete flag */
   @Column(name = "active_status", nullable = false)
-  @Convert(converter = BooleanStringConverter.class)
   protected boolean activeStatus = true;
 
   @CreatedBy
@@ -44,7 +35,6 @@ public abstract class BaseEntity {
 
   @CreatedDate
   @Column(name = "creation_date", nullable = false)
-  @Convert(converter = InstantConverter.class)
   protected Instant creationDate;
 
   @LastModifiedBy
@@ -53,6 +43,5 @@ public abstract class BaseEntity {
 
   @LastModifiedDate
   @Column(name = "last_update_date", nullable = false)
-  @Convert(converter = InstantConverter.class)
   protected Instant lastUpdateDate;
 }
