@@ -8,10 +8,10 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.thizgroup</groupId>
-    <artifactId>promotion</artifactId>
+    <groupId>ink.moshuier</groupId>
+    <artifactId>motse_rule-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>promotion-parent</name>
+    <name>motse_rule-parent</name>
     <packaging>pom</packaging>
 
     <properties>
@@ -30,10 +30,10 @@
 
 
     <modules>
-        <module>promotion-model</module>
-        <module>promotion-dao</module>
-        <module>promotion-service</module>
-        <module>promotion-api</module>
+        <module>motse_rule-model</module>
+        <module>motse_rule-dao</module>
+        <module>motse_rule-service</module>
+        <module>motse_rule-api</module>
     </modules>
 
     <dependencyManagement>
@@ -41,19 +41,19 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
-                <artifactId>promotion-model</artifactId>
+                <artifactId>motse_rule-model</artifactId>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
-                <artifactId>promotion-dao</artifactId>
+                <artifactId>motse_rule-dao</artifactId>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
-                <artifactId>promotion-service</artifactId>
+                <artifactId>motse_rule-service</artifactId>
             </dependency>
 
             <dependency>
@@ -161,7 +161,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <fork>true</fork>
-                        <mainClass>com.thizgroup.promotion.api.PromotionApi</mainClass>
+                        <mainClass>ink.moshuier.motse.MotseApplication</mainClass>
                     </configuration>
                     <executions>
                         <execution>

@@ -1,0 +1,24 @@
+server:
+  port: 2000
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/motse?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 222000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+
+
+
+clear:
+  cron: '0 0 0 * * ?'
