@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaAuditing
 @SpringBootApplication
-@EnableJpaRepositories("ink.moshuier.motse")
+@EnableJpaRepositories("ink.moshuier.motse.dao")
 @EntityScan("ink.moshuier.motse.model")
 public class MotseApplication {
 

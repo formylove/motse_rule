@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,4 +24,8 @@ public class QuestionnairEntity extends BaseEntity implements Serializable {
     @OneToMany(targetEntity = QuestionEntity.class,cascade = ALL)
     @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
     private List<QuestionEntity> questions = new ArrayList<>();
+
+    @OneToOne(mappedBy = "questionnair" )
+    @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
+    private TaskEntity taskEntity;
 }

@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import static javax.persistence.CascadeType.*;
+
 
 @Data
 @Entity
@@ -33,11 +35,11 @@ public class TaskEntity extends BaseEntity implements Serializable {
 
     //固定时间段
     @Column(name = "sfrom",columnDefinition = "bigint")
-    private Long from;
+    private Integer from;
     @Column(name = "tomatoes",columnDefinition = "tinyint",nullable = false)
     private int tomatoes;
 
-    @OneToOne(targetEntity = QuestionnairEntity.class)
+    @OneToOne(targetEntity = QuestionnairEntity.class,cascade = ALL)
     @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
     private QuestionnairEntity questionnair;
 

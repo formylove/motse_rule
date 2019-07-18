@@ -26,7 +26,7 @@ public abstract class BaseEntity {
       columnDefinition = "BIGINT")
   @GeneratedValue(generator = "idGenerator")
   @GenericGenerator(name = "idGenerator", strategy = "ink.moshuier.motse.model.util.IdGenerator")
-  protected long id;
+  protected Long id;
 
   /* Soft delete flag */
   @Column(name = "active_status", nullable = false)

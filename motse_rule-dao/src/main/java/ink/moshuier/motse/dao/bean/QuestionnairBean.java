@@ -19,10 +19,12 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class QuestionnairBean {
     private Long id;
-    List<QuestionBean> questions;
+    private List<QuestionBean> questions;
+    private TaskBean taskBean;
 
     public QuestionnairBean(QuestionnairEntity questionnairEntity) {
         this.id = questionnairEntity.getId();
+        this.taskBean = new TaskBean(questionnairEntity.getTaskEntity());
         this.questions = questionnairEntity.getQuestions().stream().map((questionEntity)->new QuestionBean(questionEntity)).collect(Collectors.toList());
     }
 

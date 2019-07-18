@@ -61,7 +61,7 @@ public interface TaskApi extends RestfulApi {
     private int frequency;
     @ApiModelProperty("起始时间")
     @NotNull
-    private Long from;
+    private Integer from;
     @ApiModelProperty("番茄时间")
     @NotNull
     private int tomatoes;
@@ -113,7 +113,7 @@ public interface TaskApi extends RestfulApi {
     private int frequency;
     @ApiModelProperty("起始时间")
     @NotNull
-    private Long from;
+    private Integer from;
     @ApiModelProperty("番茄时间")
     @NotNull
     private int tomatoes;
@@ -154,7 +154,7 @@ public interface TaskApi extends RestfulApi {
 
 
     private int frequency;
-    private Long from;
+    private Integer from;
     private int tomatoes;
     private Long startDate;
     private Long endDate;

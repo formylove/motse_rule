@@ -26,7 +26,7 @@ public class TaskBean {
 
 
     //固定时间段
-    private Long from;
+    private Integer from;
     private int tomatoes;
 
     private Long score;

@@ -1,4 +1,4 @@
-package ink.moshuier.motse.api.service;
+package ink.moshuier.motse.service;
 
 import ink.moshuier.motse.MotseApplication;
 import ink.moshuier.motse.api.BaseTest;
@@ -18,11 +18,6 @@ import java.util.List;
  * @author : Sarah Xu
  * @date : 2019-07-15
  **/
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MotseApplication.class)
-//@Transactional
-//@AutoConfigureTestDatabase
-//@ActiveProfiles("default")
 public class QuestionnairServiceTest extends BaseTest {
 
     @Test
@@ -33,12 +28,11 @@ public class QuestionnairServiceTest extends BaseTest {
 
 
         //被引用的对象需要先保存
-        questionnairEntity = questionnairEntityRepository.saveAndFlush(questionnairEntity);
-        questionEntity = questionEntityRepository.saveAndFlush(questionEntity);
+        questionnairEntity = questionnairDao.saveAndFlush(questionnairEntity);
+        questionEntity = questionDao.saveAndFlush(questionEntity);
         System.out.println(questionEntity);
         System.out.println(questionnairEntity);
     }
-//要颜值要才华要学历，我觉得李健更适合你，彭于晏都不合格的
     @Test
     public void saveQuestionnairTest() {
         QuestionnairBean questionnairBean = new QuestionnairBean();

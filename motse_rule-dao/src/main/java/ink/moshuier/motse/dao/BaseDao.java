@@ -17,7 +17,7 @@ public interface BaseDao<E extends BaseEntity>
     extends JpaRepository<E, Long>, JpaSpecificationExecutor<E> {
 
 
-  default long genUuid() {
+  default Long genUuid() {
     return IdGenerator.getId();
 
   }
