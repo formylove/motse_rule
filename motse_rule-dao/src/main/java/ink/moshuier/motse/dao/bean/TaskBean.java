@@ -44,7 +44,6 @@ public class TaskBean {
         this.quarant = taskEntity.getQuarant();
         this.from = taskEntity.getFrom();
         this.tomatoes = taskEntity.getTomatoes();
-        this.score = taskEntity.getScore();
         this.startDate = taskEntity.getStartDate();
         this.endDate = taskEntity.getEndDate();
         this.done = taskEntity.getDone();

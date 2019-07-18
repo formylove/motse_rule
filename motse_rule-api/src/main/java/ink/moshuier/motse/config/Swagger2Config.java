@@ -26,6 +26,6 @@ public class Swagger2Config {
   }
 
   private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("api文档").description("手机号绑定").version("1.0").build();
+    return new ApiInfoBuilder().title("api文档").description("墨守").version("1.0").build();
   }
 }

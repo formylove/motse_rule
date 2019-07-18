@@ -27,7 +27,7 @@ public class TaskApiImpl implements TaskApi {
         TaskBean taskBean = TaskBean.builder().title(addingRequest.getTitle()).type(addingRequest.getType()).frequency(addingRequest.getFrequency()).value(addingRequest.getValue())
                 .quarant(addingRequest.getQuarant()).from(addingRequest.getFrom()).tomatoes(addingRequest.getTomatoes()).startDate(addingRequest.getStartDate()).endDate(addingRequest.getEndDate())
                 .done(false).bonus(addingRequest.getBonus()).build();
-        return new ResponseBean<>(taskService.addTask(taskBean));
+        return new ResponseBean<>(taskService.addOrUpdateTask(taskBean));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class TaskApiImpl implements TaskApi {
         TaskBean taskBean = TaskBean.builder().title(updateRequest.getTitle()).type(updateRequest.getType()).frequency(updateRequest.getFrequency()).value(updateRequest.getValue())
                 .quarant(updateRequest.getQuarant()).from(updateRequest.getFrom()).tomatoes(updateRequest.getTomatoes()).startDate(updateRequest.getStartDate()).endDate(updateRequest.getEndDate())
                 .done(false).bonus(updateRequest.getBonus()).build();
-        taskService.updateTask(taskBean);
+        taskService.addOrUpdateTask(taskBean);
         return new ResponseBean<>();
     }
 

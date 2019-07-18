@@ -7,9 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -34,13 +32,16 @@ public class TaskEntity extends BaseEntity implements Serializable {
     private Quarants quarant;
 
     //固定时间段
-    @Column(name = "from",columnDefinition = "bigint")
+    @Column(name = "sfrom",columnDefinition = "bigint")
     private Long from;
     @Column(name = "tomatoes",columnDefinition = "tinyint",nullable = false)
     private int tomatoes;
 
-    @Column(name = "score",columnDefinition = "tinyint",nullable = false)
-    private Long score;
+    @OneToOne(targetEntity = QuestionnairEntity.class)
+    @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
+    private QuestionnairEntity questionnair;
+
+
     //任务开始日期
     @Column(name = "startDate",columnDefinition = "bigint",nullable = false)
     private Long startDate;

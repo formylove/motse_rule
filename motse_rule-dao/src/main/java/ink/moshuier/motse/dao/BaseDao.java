@@ -1,7 +1,7 @@
-package ink.moshuier.motse.dao.repo;
+package ink.moshuier.motse.dao;
 
-import ink.moshuier.motse.dao.util.IdGenerator;
 import ink.moshuier.motse.model.entity.BaseEntity;
+import ink.moshuier.motse.model.util.IdGenerator;
 import net.jodah.typetools.TypeResolver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 
 @NoRepositoryBean
-public interface BaseEntityRepository<E extends BaseEntity>
+public interface BaseDao<E extends BaseEntity>
     extends JpaRepository<E, Long>, JpaSpecificationExecutor<E> {
 
 
@@ -25,11 +25,11 @@ public interface BaseEntityRepository<E extends BaseEntity>
   @SuppressWarnings("unchecked")
   default E newEntity() {
     Type repoType =
-        ((Class<? extends BaseEntityRepository<E>>) this.getClass().getGenericInterfaces()[0])
+        ((Class<? extends BaseDao<E>>) this.getClass().getGenericInterfaces()[0])
             .getGenericInterfaces()[0];
 
     Class<E> entityClass =
-        (Class<E>) TypeResolver.resolveRawArgument(repoType, BaseEntityRepository.class);
+        (Class<E>) TypeResolver.resolveRawArgument(repoType, BaseDao.class);
     try {
       E e = entityClass.getConstructor().newInstance();
       e.setId(genUuid());

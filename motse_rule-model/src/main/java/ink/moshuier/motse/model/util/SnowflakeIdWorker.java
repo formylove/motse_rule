@@ -1,4 +1,4 @@
-package ink.moshuier.motse.dao.util;
+package ink.moshuier.motse.model.util;
 
 /**
  * Twitter_Snowflake<br>

@@ -6,13 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.CascadeType.*;
 
 
 @Data
@@ -23,6 +22,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class QuestionnairEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -2127638796847271526L;
-    @OneToMany(mappedBy = "questionnair_id")
-    List<QuestionEntity> questions = new ArrayList<>();
+    @OneToMany(targetEntity = QuestionEntity.class,cascade = ALL)
+    @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
+    private List<QuestionEntity> questions = new ArrayList<>();
 }

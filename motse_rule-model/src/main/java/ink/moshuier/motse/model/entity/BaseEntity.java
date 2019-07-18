@@ -1,6 +1,7 @@
 package ink.moshuier.motse.model.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -23,6 +24,8 @@ public abstract class BaseEntity {
       nullable = false,
       updatable = false,
       columnDefinition = "BIGINT")
+  @GeneratedValue(generator = "idGenerator")
+  @GenericGenerator(name = "idGenerator", strategy = "ink.moshuier.motse.model.util.IdGenerator")
   protected long id;
 
   /* Soft delete flag */
@@ -30,18 +33,18 @@ public abstract class BaseEntity {
   protected boolean activeStatus = true;
 
   @CreatedBy
-  @Column(name = "created_by", nullable = false, length = 64)
+  @Column(name = "created_by", nullable = true, length = 64)
   protected String createdBy = "";
 
   @CreatedDate
-  @Column(name = "creation_date", nullable = false)
+  @Column(name = "creation_date", nullable = true)
   protected Instant creationDate;
 
   @LastModifiedBy
-  @Column(name = "last_updated_by", nullable = false, length = 64)
+  @Column(name = "last_updated_by", nullable = true, length = 64)
   protected String lastUpdatedBy = "";
 
   @LastModifiedDate
-  @Column(name = "last_update_date", nullable = false)
+  @Column(name = "last_update_date", nullable = true)
   protected Instant lastUpdateDate;
 }

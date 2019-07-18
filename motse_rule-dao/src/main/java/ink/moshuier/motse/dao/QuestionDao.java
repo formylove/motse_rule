@@ -1,6 +1,6 @@
 package ink.moshuier.motse.dao;
 
-import ink.moshuier.motse.model.entity.TaskEntity;
+import ink.moshuier.motse.model.entity.QuestionEntity;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
  * @date : 2019-05-28
  */
 @Repository
-public interface TaskDao
-    extends BaseDao<TaskEntity> {
-
+public interface QuestionDao
+    extends BaseDao<QuestionEntity> {
 }

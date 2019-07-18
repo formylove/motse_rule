@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
  */
 @Api(value = "任务/长期任务")
 @RestController
-@RequestMapping("/task/")
+@RequestMapping("/")
 public interface TaskApi extends RestfulApi {
   @Data
   @Builder

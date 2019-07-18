@@ -1,6 +1,12 @@
-package ink.moshuier.motse.dao.util;
+package ink.moshuier.motse.model.util;
 
-public class IdGenerator {
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+
+import java.io.Serializable;
+
+public class IdGenerator implements IdentifierGenerator {
 
   private static long dataCenterId = 1L;
 
@@ -22,5 +28,10 @@ public class IdGenerator {
       }
     }
     return snowflakeIdWorker.nextId();
+  }
+
+  @Override
+  public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
+    return  getId();
   }
 }

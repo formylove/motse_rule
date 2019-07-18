@@ -9,14 +9,17 @@ import javax.persistence.AttributeConverter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.*;
+import static com.fasterxml.jackson.databind.MapperFeature.*;
+import static com.fasterxml.jackson.databind.SerializationFeature.*;
+
 @Slf4j
 abstract class AbstractJsonConverter<T> implements AttributeConverter<T, String> {
 
   private static final ObjectMapper JSON =
-      new ObjectMapper()
-          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .configure(MapperFeature.DEFAULT_VIEW_INCLUSION, true)
-          .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+      new ObjectMapper().configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .configure(DEFAULT_VIEW_INCLUSION, true)
+          .disable(WRITE_DATES_AS_TIMESTAMPS)
           .registerModule(new JavaTimeModule());
 
   @Override

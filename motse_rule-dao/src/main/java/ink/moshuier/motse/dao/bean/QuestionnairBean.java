@@ -4,6 +4,7 @@ import ink.moshuier.motse.model.entity.QuestionnairEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class QuestionnairBean {
     private Long id;
     List<QuestionBean> questions;
@@ -23,4 +25,5 @@ public class QuestionnairBean {
         this.id = questionnairEntity.getId();
         this.questions = questionnairEntity.getQuestions().stream().map((questionEntity)->new QuestionBean(questionEntity)).collect(Collectors.toList());
     }
+
 }
