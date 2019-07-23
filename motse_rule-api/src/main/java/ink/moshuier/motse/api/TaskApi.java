@@ -2,9 +2,8 @@ package ink.moshuier.motse.api;
 
 import ink.moshuier.motse.api.bean.PageResponseBean;
 import ink.moshuier.motse.api.bean.ResponseBean;
-import ink.moshuier.motse.dao.bean.QuestionnairBean;
+import ink.moshuier.motse.api.bean.dto.QuestionnairDTO;
 import ink.moshuier.motse.dao.bean.TaskBean;
-import ink.moshuier.motse.model.entity.TaskEntity;
 import ink.moshuier.motse.model.enums.Quarants;
 import ink.moshuier.motse.model.enums.TaskType;
 import io.swagger.annotations.Api;
@@ -27,7 +26,7 @@ import javax.validation.constraints.NotNull;
  */
 @Api(value = "任务/长期任务")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/tasks")
 public interface TaskApi extends RestfulApi {
   @Data
   @Builder
@@ -52,7 +51,7 @@ public interface TaskApi extends RestfulApi {
     private Long bonus;
     @ApiModelProperty("问卷")
     @NotNull
-    private QuestionnairBean questionnair;
+    private QuestionnairDTO questionnair;
 
 
     //时间
@@ -74,8 +73,9 @@ public interface TaskApi extends RestfulApi {
 
   }
 
-  @ApiOperation(value = "添加任务")
-  @PostMapping(value = "/task", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+    @ApiOperation(value = "添加任务")
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseBean<Long> addTask(@Validated @RequestBody TaskAddingRequest addingRequest);
 
 
@@ -84,9 +84,6 @@ public interface TaskApi extends RestfulApi {
   @AllArgsConstructor
   @NoArgsConstructor
   public class TaskUpdateRequest {
-    @ApiModelProperty("id")
-    @NotBlank
-    private Long id;
 
     @ApiModelProperty("名称")
     @NotBlank
@@ -126,12 +123,12 @@ public interface TaskApi extends RestfulApi {
   }
 
   @ApiOperation(value = "修改任务")
-  @PutMapping(value = "/task", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public ResponseBean<Void> updateTask(@Validated @RequestBody TaskUpdateRequest updateRequest);
+  @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseBean<Void> updateTask(@Validated @RequestBody TaskUpdateRequest updateRequest, @PathVariable Long id);
 
 
   @ApiOperation(value = "删除任务")
-  @DeleteMapping(value = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseBean<Void> deleteTask(@Validated @PathVariable Long hid);
 
 
@@ -179,7 +176,7 @@ public interface TaskApi extends RestfulApi {
 
   }
   @ApiOperation(value = "查询任务")
-  @GetMapping(value = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseBean<TaskDTO> getTask(@Validated @PathVariable Long hid);
 
 
@@ -210,7 +207,7 @@ public interface TaskApi extends RestfulApi {
 
     }
   @ApiOperation(value = "查询所有任务")
-  @GetMapping(value = "/tasks/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @PostMapping(value = "/searches", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public PageResponseBean<TaskDTO, TaskBean> getTasks(@Validated @RequestBody TasksRequest tasksRequest);
 
 

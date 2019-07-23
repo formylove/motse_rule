@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * @author : Sarah Xu
  * @date : 2019-07-12
@@ -30,6 +33,7 @@ public class TaskBean {
     private int tomatoes;
 
     private Long score;
+    private QuestionnairBean questionnairBean;
     //任务开始时间
     private Long startDate;
     private Long endDate;
@@ -37,6 +41,7 @@ public class TaskBean {
     private Long bonus;
 
     public TaskBean(TaskEntity taskEntity) {
+        this.id = taskEntity.getId();
         this.title = taskEntity.getTitle();
         this.type = taskEntity.getType();
         this.frequency = taskEntity.getFrequency();
@@ -48,6 +53,11 @@ public class TaskBean {
         this.endDate = taskEntity.getEndDate();
         this.done = taskEntity.getDone();
         this.bonus = taskEntity.getBonus();
+        Optional.ofNullable(taskEntity.getQuestionnair()).ifPresent((questionnairEntity) -> {
+            this.questionnairBean = QuestionnairBean.builder().questions(questionnairEntity
+                    .getQuestions().stream().map((questionEntity) -> new QuestionBean(questionEntity)).collect(Collectors.toList()))
+                    .id(questionnairEntity.getId()).build();
+        });
     }
 
 

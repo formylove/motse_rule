@@ -4,6 +4,8 @@ import ink.moshuier.motse.dao.TaskDao;
 import ink.moshuier.motse.dao.bean.PageBean;
 import ink.moshuier.motse.dao.bean.TaskBean;
 import ink.moshuier.motse.dao.exception.CommonException;
+import ink.moshuier.motse.model.entity.QuestionEntity;
+import ink.moshuier.motse.model.entity.QuestionnairEntity;
 import ink.moshuier.motse.model.entity.TaskEntity;
 import ink.moshuier.motse.model.enums.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static ink.moshuier.motse.dao.exception.ErrorCode.TASK_NOT_FOUND;
 
@@ -38,9 +42,17 @@ public class TaskService {
     }
 
     Function<TaskBean,TaskEntity> beanToEntity = (bean)->{
-      TaskEntity taskEntity = TaskEntity.builder().title(bean.getTitle()).type(bean.getType()).frequency(bean.getFrequency()).value(bean.getValue()).quarant(bean.getQuarant())
+
+
+        TaskEntity taskEntity = TaskEntity.builder().title(bean.getTitle()).type(bean.getType()).frequency(bean.getFrequency()).value(bean.getValue()).quarant(bean.getQuarant())
               .from(bean.getFrom()).tomatoes(bean.getTomatoes()).startDate(bean.getStartDate()).endDate(bean.getEndDate()).done(bean.getDone()).bonus(bean.getBonus()).build();
       taskEntity.setId(bean.getId());
+        QuestionnairEntity questionnairEntity = null;
+        if (Objects.nonNull(bean.getQuestionnairBean())) {
+            questionnairEntity = QuestionnairEntity.builder().questions(bean.getQuestionnairBean().getQuestions().stream().map((questionBean) -> QuestionEntity.builder().question(questionBean.getQuestion()).proportion(questionBean.getProportion()).build()).collect(Collectors.toList())).build();
+        }
+
+        taskEntity.setQuestionnair(questionnairEntity);
       return  taskEntity;
     };
 
@@ -51,12 +63,14 @@ public class TaskService {
               (Root<TaskEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) -> {
                 List<Predicate> predicates = new ArrayList<>();
                 Path path_task_type = root.get("type");
+                  Path path_active_status = root.get("activeStatus");
                 Path path_title = root.get("title");
 
                 Optional.ofNullable(taskType).ifPresent((type)->predicates.add(cb.in(path_task_type).value(type)));
                 if (!StringUtils.isEmpty(title)) {
                   predicates.add(cb.like(path_title, title));
                 }
+                  predicates.add(cb.equal(path_active_status, true));
 
                 Predicate[] p = new Predicate[predicates.size()];
                 criteriaQuery.where(cb.and(predicates.toArray(p)));

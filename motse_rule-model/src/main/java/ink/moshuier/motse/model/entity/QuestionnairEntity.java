@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.ALL;
 
 
 @Data
@@ -25,7 +25,7 @@ public class QuestionnairEntity extends BaseEntity implements Serializable {
     @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
     private List<QuestionEntity> questions = new ArrayList<>();
 
-    @OneToOne(mappedBy = "questionnair" )
+    @OneToOne(mappedBy = "questionnair", cascade = ALL)
     @JoinColumn(name = "questionnair_id",referencedColumnName = "id")
     private TaskEntity taskEntity;
 }

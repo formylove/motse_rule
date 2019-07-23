@@ -30,7 +30,7 @@ public abstract class BaseEntity {
 
   /* Soft delete flag */
   @Column(name = "active_status", nullable = false)
-  protected boolean activeStatus = true;
+  protected Boolean activeStatus = true;
 
   @CreatedBy
   @Column(name = "created_by", nullable = true, length = 64)

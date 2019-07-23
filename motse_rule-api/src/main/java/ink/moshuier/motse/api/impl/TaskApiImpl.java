@@ -3,15 +3,18 @@ package ink.moshuier.motse.api.impl;
 import ink.moshuier.motse.api.TaskApi;
 import ink.moshuier.motse.api.bean.PageResponseBean;
 import ink.moshuier.motse.api.bean.ResponseBean;
+import ink.moshuier.motse.api.bean.dto.QuestionnairDTO;
 import ink.moshuier.motse.dao.bean.PageBean;
+import ink.moshuier.motse.dao.bean.QuestionBean;
+import ink.moshuier.motse.dao.bean.QuestionnairBean;
 import ink.moshuier.motse.dao.bean.TaskBean;
 import ink.moshuier.motse.model.entity.TaskEntity;
-import ink.moshuier.motse.model.enums.Quarants;
-import ink.moshuier.motse.model.enums.TaskType;
 import ink.moshuier.motse.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+
+import java.util.stream.Collectors;
 
 /**
  * @author : Sarah Xu
@@ -24,17 +27,25 @@ public class TaskApiImpl implements TaskApi {
 
     @Override
     public ResponseBean<Long> addTask(TaskAddingRequest addingRequest) {
+        QuestionnairDTO questionnairDTO = addingRequest.getQuestionnair();
+        QuestionnairBean questionnairBean = QuestionnairBean.builder().questions(questionnairDTO.getQuestions().stream()
+                .map((questionDTO) -> QuestionBean.builder().proportion(questionDTO.getProportion()).question(questionDTO.getQuestion()).build()).collect(Collectors.toList())).build();
+
+
         TaskBean taskBean = TaskBean.builder().title(addingRequest.getTitle()).type(addingRequest.getType()).frequency(addingRequest.getFrequency()).value(addingRequest.getValue())
                 .quarant(addingRequest.getQuarant()).from(addingRequest.getFrom()).tomatoes(addingRequest.getTomatoes()).startDate(addingRequest.getStartDate()).endDate(addingRequest.getEndDate())
-                .done(false).bonus(addingRequest.getBonus()).build();
+                .done(false).bonus(addingRequest.getBonus()).questionnairBean(questionnairBean).build();
+
+
         return new ResponseBean<>(taskService.addOrUpdateTask(taskBean));
     }
 
     @Override
-    public ResponseBean<Void> updateTask(TaskUpdateRequest updateRequest) {
+    public ResponseBean<Void> updateTask(TaskUpdateRequest updateRequest, Long id) {
         TaskBean taskBean = TaskBean.builder().title(updateRequest.getTitle()).type(updateRequest.getType()).frequency(updateRequest.getFrequency()).value(updateRequest.getValue())
                 .quarant(updateRequest.getQuarant()).from(updateRequest.getFrom()).tomatoes(updateRequest.getTomatoes()).startDate(updateRequest.getStartDate()).endDate(updateRequest.getEndDate())
                 .done(false).bonus(updateRequest.getBonus()).build();
+        taskBean.setId(id);
         taskService.addOrUpdateTask(taskBean);
         return new ResponseBean<>();
     }

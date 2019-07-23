@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
  */
 @Api(value = "习惯/长期任务")
 @RestController
-@RequestMapping("/habit/")
+@RequestMapping("/score")
 public interface ScoreApi extends RestfulApi {
   @Data
   @Builder
@@ -49,7 +49,7 @@ public interface ScoreApi extends RestfulApi {
   }
 
   @ApiOperation(value = "更改分数")
-  @PostMapping(value = "/score/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseBean<Void> rate(@RequestBody ScoreRequest request);
 
 
