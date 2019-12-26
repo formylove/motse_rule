@@ -19,6 +19,7 @@ spring:
           SQL: DEBUG
 #    static-path-pattern: /*
 
+
 algorithm:
   parity: 1
 
