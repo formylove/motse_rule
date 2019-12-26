@@ -22,3 +22,6 @@ spring:
 
 clear:
   cron: '0 0 0 * * ?'
+
+algorithm:
+  parity: 0.5

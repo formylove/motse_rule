@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/motse_test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
     username: root
-    password: 222000
+    password: 123456
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     generate-ddl: false
@@ -19,7 +19,8 @@ spring:
           SQL: DEBUG
 #    static-path-pattern: /*
 
-
+algorithm:
+  parity: 1
 
 clear:
   cron: '0 0 0 * * ?'

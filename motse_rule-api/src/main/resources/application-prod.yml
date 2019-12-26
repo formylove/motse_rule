@@ -1,11 +1,11 @@
 server:
-  port: 8888
+  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://rm-uf679020c6vrt28in.mysql.rds.aliyuncs.com/jft_promotion?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
-    username: jftpromotionuser
-    password: jft@promotionpasswd20190529
+    url: jdbc:mysql://172.20.0.7:3306/motse?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 222000
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     generate-ddl: false
@@ -17,14 +17,10 @@ spring:
       org:
         hibernate:
           SQL: DEBUG
+#    static-path-pattern: /*
 
+algorithm:
+  parity: 1
 
-
-sms:
-  account: I2223721
-  password: YfIc1ipL3h12c6
-  url: http://intapi.253.com/send/json
-  template: 【吉富通】您的验证码为：{0}，该验证码5分钟内有效，请勿泄露给他人。
-export:
-  cron: 0 0 0 * * ?
-  directory: /tmp/
+clear:
+  cron: '0 0 0 * * ?'

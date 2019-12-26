@@ -71,4 +71,6 @@ public interface BaseDao<E extends BaseEntity>
    */
   @Query("FROM #{#entityName} WHERE id=?1 AND activeStatus=TRUE ")
   E getActiveEntityById(Long id);
+
+
 }

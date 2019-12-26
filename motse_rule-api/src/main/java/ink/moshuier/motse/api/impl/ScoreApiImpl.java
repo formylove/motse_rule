@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 public class ScoreApiImpl implements ScoreApi {
     @Override
     public ResponseBean<Void> rate(ScoreRequest request) {
+
+
         return null;
     }
 }

@@ -3,7 +3,8 @@ package ink.moshuier.motse.dao.exception;
 /** Created by jf on 2019/4/24. */
 public enum ErrorCode {
   TASK_NOT_FOUND(1000, "task.not.found"),
-  TASd_NOT_FOUND(1000, "task.not.found");
+
+    ;
 
 
 

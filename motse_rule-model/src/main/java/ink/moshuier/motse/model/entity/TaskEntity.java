@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.ALL;
 
 
 @Data
@@ -20,23 +20,23 @@ import static javax.persistence.CascadeType.*;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class TaskEntity extends BaseEntity implements Serializable {
-    @Column(name = "title",columnDefinition = "varchar(50)",nullable = false)
+    @Column(name = "title", columnDefinition = "VARCHAR(50)", nullable = false)
     private String title;
-    @Column(name = "type",columnDefinition = "tinyint",nullable = false)
+    @Column(name = "type", columnDefinition = "TINYINT", nullable = false)
     private TaskType type;
     //执行频率
-    @Column(name = "frequency",columnDefinition = "tinyint",nullable = false)
+    @Column(name = "frequency", columnDefinition = "TINYINT", nullable = false)
     private int frequency;
     //重要性
-    @Column(name = "value",columnDefinition = "int",nullable = false)
+    @Column(name = "value", columnDefinition = "INT", nullable = false)
     private Long value;
-    @Column(name = "quarant",columnDefinition = "tinyint",nullable = false)
+    @Column(name = "quarant", columnDefinition = "TINYINT", nullable = false)
     private Quarants quarant;
 
     //固定时间段
-    @Column(name = "sfrom",columnDefinition = "bigint")
+    @Column(name = "sfrom", columnDefinition = "BIGINT")
     private Integer from;
-    @Column(name = "tomatoes",columnDefinition = "tinyint",nullable = false)
+    @Column(name = "tomatoes", columnDefinition = "TINYINT", nullable = false)
     private int tomatoes;
 
     @OneToOne(targetEntity = QuestionnairEntity.class,cascade = ALL)
@@ -45,14 +45,14 @@ public class TaskEntity extends BaseEntity implements Serializable {
 
 
     //任务开始日期
-    @Column(name = "startDate",columnDefinition = "bigint",nullable = false)
+    @Column(name = "startDate", columnDefinition = "BIGINT", nullable = false)
     private Long startDate;
-    @Column(name = "endDate",columnDefinition = "bigint",nullable = false)
+    @Column(name = "endDate", columnDefinition = "BIGINT", nullable = false)
     private Long endDate;
     //false 为失败
-    @Column(name = "done",columnDefinition = "char(1)")
+    @Column(name = "done", columnDefinition = "CHAR(1)")
     private Boolean done;
-    @Column(name = "bonus",columnDefinition = "int",nullable = false)
+    @Column(name = "bonus", columnDefinition = "INT", nullable = false)
     private Long bonus;
 
 

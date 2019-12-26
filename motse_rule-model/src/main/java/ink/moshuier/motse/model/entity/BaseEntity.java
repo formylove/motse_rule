@@ -18,12 +18,6 @@ public abstract class BaseEntity {
 
   /* Primary key */
   @Id
-  @Column(
-      name = "id",
-      unique = true,
-      nullable = false,
-      updatable = false,
-      columnDefinition = "BIGINT")
   @GeneratedValue(generator = "idGenerator")
   @GenericGenerator(name = "idGenerator", strategy = "ink.moshuier.motse.model.util.IdGenerator")
   protected Long id;
