@@ -37,6 +37,7 @@ public class OSSClient {
         return auth.uploadToken(bucket);
     }
 
+
     public String upload(byte[] bytes) throws IOException {
         //第二种方式: 自动识别要上传的空间(bucket)的存储区域是华东、华北、华南。
         Zone z = Zone.autoZone();
