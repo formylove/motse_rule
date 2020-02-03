@@ -3,14 +3,20 @@ package ink.moshuier.motse.api.bean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Data
 @ResponseBody
+@NoArgsConstructor
 public class ResponseBean<E> {
   Integer errCode = 0;
-  @JsonRawValue String errMsg = "\"OK\"";
+  @JsonRawValue
+  String errMsg = "\"OK\"";
 
   @JsonInclude(JsonInclude.Include.NON_NULL)
   Integer pageNumber;
@@ -36,5 +42,25 @@ public class ResponseBean<E> {
     this.errMsg = errMsg;
   }
 
-  public ResponseBean() {}
+  public static ResponseBean builder() {
+    ResponseBean<Map<String, Object>> mapResponseBean = new ResponseBean<Map<String, Object>>();
+    mapResponseBean.data = new HashMap<>();
+    return mapResponseBean;
+  }
+
+  public static ResponseBean success() {
+    ResponseBean<Void> voidResponseBean = new ResponseBean<>();
+    return voidResponseBean;
+  }
+
+  public static <V> ResponseBean<V> success(V t) {
+    ResponseBean<V> typeResponseBean = new ResponseBean<>(t);
+    return typeResponseBean;
+  }
+
+
+  public ResponseBean populate(String key, Object value) {
+    ((Map<String, Object>) this.data).put(key, value);
+    return this;
+  }
 }

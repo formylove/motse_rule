@@ -11,6 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
+import java.util.Optional;
 
 @NoRepositoryBean
 public interface BaseDao<E extends BaseEntity>
@@ -72,5 +73,6 @@ public interface BaseDao<E extends BaseEntity>
   @Query("FROM #{#entityName} WHERE id=?1 AND activeStatus=TRUE ")
   E getActiveEntityById(Long id);
 
+    Optional<E> findOptionalByIdAndActiveStatusIsTrue(Long id);
 
 }

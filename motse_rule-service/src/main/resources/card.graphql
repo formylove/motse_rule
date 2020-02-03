@@ -1,0 +1,26 @@
+type Query{
+cards:[Card]
+card(id:Int):Card
+}
+type Card{
+id:Int
+cname:[String]
+ename:[String]
+portraits:[String]
+desc:String
+}
+
+type Mutation{
+update(id:Int,input:CardRequest):Id
+create(input:CardRequest):Id
+}
+type Id{
+id:Int
+}
+
+input CardRequest{
+cname:[String]
+ename:[String]
+portraits:[String]
+desc:String
+}

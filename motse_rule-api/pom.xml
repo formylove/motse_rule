@@ -16,7 +16,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>motse_rule-service</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>motse_rule-model</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>

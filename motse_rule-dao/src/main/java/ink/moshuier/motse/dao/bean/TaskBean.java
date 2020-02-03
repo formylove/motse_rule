@@ -4,8 +4,9 @@ import ink.moshuier.motse.model.entity.TaskEntity;
 import ink.moshuier.motse.model.enums.Quarants;
 import ink.moshuier.motse.model.enums.TaskType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,10 +15,11 @@ import java.util.stream.Collectors;
  * @author : Sarah Xu
  * @date : 2019-07-12
  **/
-@Builder
+@SuperBuilder
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class TaskBean {
+public class TaskBean extends BaseBean {
     private Long id;
     private String title;
     private TaskType type;
