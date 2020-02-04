@@ -25,3 +25,7 @@ algorithm:
 
 clear:
   cron: '0 0 0 * * ?'
+oss:
+  accessKey: F3HgxcsyMpEErL4Q-l_6rQ6MJ1qRTkznjKbgADP9
+  secret: XhCmEw7sLOoJGWBzB-4T6qenAI-xTtjrKxiRy7m-
+  bucket: motse
