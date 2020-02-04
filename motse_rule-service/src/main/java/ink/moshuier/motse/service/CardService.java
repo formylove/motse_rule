@@ -27,7 +27,7 @@ import java.io.IOException;
 @Service
 @Transactional
 public class CardService extends GraphQLService {
-    @Value("classpath:card.graphql")
+    @Value("classpath*:card.graphql")
     private Resource resource;
     private GraphQL graphQL;
     @Autowired
