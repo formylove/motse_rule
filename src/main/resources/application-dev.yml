@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/motse_test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+#    static-path-pattern: /*
+
+algorithm:
+  parity: 1
+
+clear:
+  cron: '0 0 0 * * ?'
+
+oss:
+  accessKey: F3HgxcsyMpEErL4Q-l_6rQ6MJ1qRTkznjKbgADP9
+  secret: XhCmEw7sLOoJGWBzB-4T6qenAI-xTtjrKxiRy7m-
+  bucket: motse
