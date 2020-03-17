@@ -5,7 +5,7 @@ import ink.moshuier.motse.bean.SearchCondition;
 import ink.moshuier.motse.enums.PersistableEnum;
 import ink.moshuier.motse.enums.QuarantsEnum;
 import ink.moshuier.motse.enums.TaskType;
-import ink.moshuier.motse.enums.UnitTypeEnum;
+import ink.moshuier.motse.enums.UnitDimensionEnum;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.function.Function;
 
-import static ink.moshuier.motse.bean.SearchCondition.DEFAULT_IGNOREIFEMPTY;
-import static ink.moshuier.motse.bean.SearchCondition.DEFAULT_IGNOREIFNULL;
+import static ink.moshuier.motse.bean.SearchCondition.DEFAULT_IGNORE_IF_EMPTY;
+import static ink.moshuier.motse.bean.SearchCondition.DEFAULT_IGNORE_IF_NULL;
 
 /**
  * @author : Sarah Xu
@@ -84,7 +84,7 @@ public class ControllerAdvice {
         final List<SearchCondition> searchConditions = new ArrayList<>();
         Map<String, Function<String, PersistableEnum>> enumMap = new HashMap<>();
         enumMap.put("Enum_type", TaskType::getEnumFromName);
-        enumMap.put("Enum_unit", UnitTypeEnum::getEnumFromName);
+        enumMap.put("Enum_unit", UnitDimensionEnum::getEnumFromName);
         enumMap.put("Enum_quarant", QuarantsEnum::getEnumFromName);
         filters.keySet().stream().filter((key) -> !key.startsWith("_null_") && !key.startsWith("_empty_") && !key.startsWith("_enum_") && !key.startsWith("//"))
                 .forEach((key) -> {
@@ -96,7 +96,7 @@ public class ControllerAdvice {
                     if (Objects.nonNull(value) && Objects.nonNull(enumType)) {
                         value = enumMap.get(enumType).apply((String) value);
                     }
-                    SearchCondition searchCondition = new SearchCondition(key, value, Optional.ofNullable(ignoreIfEmpty).orElse(DEFAULT_IGNOREIFEMPTY), Optional.ofNullable(ignoreIfNull).orElse(DEFAULT_IGNOREIFNULL), operator);
+                    SearchCondition searchCondition = new SearchCondition(key, value, Optional.ofNullable(ignoreIfEmpty).orElse(DEFAULT_IGNORE_IF_EMPTY), Optional.ofNullable(ignoreIfNull).orElse(DEFAULT_IGNORE_IF_NULL), operator);
                     searchConditions.add(searchCondition);
                 });
 

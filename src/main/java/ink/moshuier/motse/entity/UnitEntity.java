@@ -1,6 +1,6 @@
 package ink.moshuier.motse.entity;
 
-import ink.moshuier.motse.enums.UnitTypeEnum;
+import ink.moshuier.motse.enums.UnitDimensionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +33,7 @@ public class UnitEntity extends BaseEntity implements Serializable {
     private String symbol;
 
     @Column(name = "unit_type", columnDefinition = "INT", nullable = false)
-    private UnitTypeEnum unitType;
+    private UnitDimensionEnum unitType;
 
     @Column(name = "conversion", columnDefinition = "varchar(500)")
     private String conversion;

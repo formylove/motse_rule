@@ -9,7 +9,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public interface PersistableEnum<DB extends Serializable> {
-    DB getEnumKey();
+    DB getDbValue();
 
     default String getFullPath() {
         return new StringBuffer(this.getClass().getName())
@@ -21,7 +21,7 @@ public interface PersistableEnum<DB extends Serializable> {
     abstract class Converter<ENUM extends PersistableEnum<DB>, DB extends Serializable> {
 
         public final DB convertToDatabaseColumn(ENUM attribute) {
-            return (null == attribute) ? null : attribute.getEnumKey();
+            return (null == attribute) ? null : attribute.getDbValue();
         }
 
         public final ENUM convertToEntityAttribute(DB dbData) {
@@ -37,7 +37,7 @@ public interface PersistableEnum<DB extends Serializable> {
 
                 List<ENUM> findResult =
                         Arrays.stream(enumClass.getEnumConstants())
-                                .filter(enumInstance -> dbData.equals(enumInstance.getEnumKey()))
+                                .filter(enumInstance -> dbData.equals(enumInstance.getDbValue()))
                                 .collect(toList());
                 if (findResult.size() != 1) {
                     if (findResult.size() > 1) {

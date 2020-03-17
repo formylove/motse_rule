@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8888
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,7 +17,22 @@ spring:
       org:
         hibernate:
           SQL: DEBUG
-#    static-path-pattern: /*
+
+
+
+
+#    OKTA  /*
+okta:
+  oauth2:
+    issuer: https://dev-114347.okta.com/oauth2/default #token issuer
+    #    client-id: 0oa2u6qprXmnNCRBo4x6
+    #    client-secret: CRXThfWuQ3F3TMvNyIcujLpyvCM3jQTB3DyNO-Me
+    client-id: 0oa34wlkiSTKEk4UB4x6
+
+
+
+
+
 
 algorithm:
   parity: 1

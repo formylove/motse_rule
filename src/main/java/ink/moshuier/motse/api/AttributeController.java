@@ -22,13 +22,13 @@ import java.util.stream.Collectors;
  */
 @Api(value = "单位")
 @RestController
-@RequestMapping("/units")
-public class UnitController extends RestfulController implements BaseApi<TaskDTO, TaskBean> {
+@RequestMapping("/attributes")
+public class AttributeController extends RestfulController implements BaseApi<TaskDTO, TaskBean> {
     public ResponseBean<Map<String, Object>> create(@AuthenticationPrincipal OidcUser oidcUser, TaskDTO request) {
         return null;
     }
 
-    @GetMapping("/dimensions/")
+    @GetMapping("/dimensions")
     public ResponseBean<List<String>> getDimensions() {
         List<String> dimensionNames = Arrays.asList(UnitDimensionEnum.values()).stream().map((dimension) -> dimension.getDbValue()).collect(Collectors.toList());
         return ResponseBean.success(dimensionNames);

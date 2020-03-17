@@ -14,8 +14,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 public class SearchCondition<T> {
-    public static final Boolean DEFAULT_IGNOREIFEMPTY = true;
-    public static final Boolean DEFAULT_IGNOREIFNULL = true;
+    public static final Boolean DEFAULT_IGNORE_IF_EMPTY = true;
+    public static final Boolean DEFAULT_IGNORE_IF_NULL = true;
     public static final CriteriaOperator DEFAULT_OPERATOR = CriteriaOperator.EQUEL;
     //the property name of class
     String name;
@@ -53,25 +53,25 @@ public class SearchCondition<T> {
         List<SearchCondition> conditions = new ArrayList<>();
 
         public SearchConditionListBuilder add(String name, Object value) {
-            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).operator(DEFAULT_OPERATOR).ignoreIfNull(DEFAULT_IGNOREIFNULL).ignoreIfEmpty(DEFAULT_IGNOREIFEMPTY).build();
+            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfNull(DEFAULT_IGNORE_IF_NULL).ignoreIfEmpty(DEFAULT_IGNORE_IF_EMPTY).operator(DEFAULT_OPERATOR).build();
             this.conditions.add(searchCondition);
             return this;
         }
 
         public SearchConditionListBuilder add(String name, Object value, Boolean ignoreIfNull) {
-            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfEmpty(ignoreIfNull).operator(CriteriaOperator.EQUEL).ignoreIfEmpty(DEFAULT_IGNOREIFEMPTY).build();
+            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfNull(ignoreIfNull).ignoreIfEmpty(DEFAULT_IGNORE_IF_EMPTY).operator(DEFAULT_OPERATOR).build();
             this.conditions.add(searchCondition);
             return this;
         }
 
         public SearchConditionListBuilder add(String name, Object value, Boolean ignoreIfNull, CriteriaOperator operator) {
-            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfEmpty(ignoreIfNull).ignoreIfNull(DEFAULT_IGNOREIFNULL).operator(operator).build();
+            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfNull(ignoreIfNull).ignoreIfEmpty(DEFAULT_IGNORE_IF_EMPTY).operator(operator).build();
             this.conditions.add(searchCondition);
             return this;
         }
 
         public SearchConditionListBuilder add(String name, Object value, Boolean ignoreIfEmpty, Boolean ignoreIfNull, CriteriaOperator operator) {
-            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfEmpty(ignoreIfEmpty).ignoreIfNull(ignoreIfNull).operator(operator).build();
+            SearchCondition<Object> searchCondition = SearchCondition.builder().name(name).value(value).ignoreIfNull(ignoreIfNull).ignoreIfEmpty(ignoreIfEmpty).operator(operator).build();
             this.conditions.add(searchCondition);
             return this;
         }

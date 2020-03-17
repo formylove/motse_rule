@@ -19,7 +19,7 @@ public enum TaskType implements PersistableEnum<Integer> {
     }
 
     @Override
-    public Integer getEnumKey() {
+    public Integer getDbValue() {
         return enumKey;
     }
 

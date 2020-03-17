@@ -1,6 +1,6 @@
 package ink.moshuier.motse.bean;
 
-import ink.moshuier.motse.enums.UnitTypeEnum;
+import ink.moshuier.motse.enums.UnitDimensionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +20,6 @@ public class UnitBean extends BaseBean {
     private List<String> cname;
     private List<String> ename;
     private String symbol;
-    private UnitTypeEnum unitType;
+    private UnitDimensionEnum unitType;
     private String conversion;
 }

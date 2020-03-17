@@ -16,6 +16,8 @@ public interface BaseApi<DTO extends BaseDTO, BEAN extends BaseBean> {
     }
 
     default ResponseBean<Void> update(DTO request, Long id) {
+
+
         return null;
     }
 
