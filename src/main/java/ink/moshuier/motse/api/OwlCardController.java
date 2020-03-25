@@ -1,24 +1,20 @@
 package ink.moshuier.motse.api;
 
 import graphql.ExecutionResult;
+import ink.moshuier.motse.annotation.ControllerDefiner;
 import ink.moshuier.motse.service.CardService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author : Sarah Xu
  * @date : 2019-05-28
  */
-@Api(value = "任务/长期任务")
-@RestController
-@RequestMapping("/cards")
-public class OwlCardController extends RestfulController {
+@ControllerDefiner(value = "知识卡片", path = "/cards")
+public class OwlCardController {
     @Autowired
     CardService cardService;
 

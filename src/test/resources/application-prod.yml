@@ -27,8 +27,7 @@ algorithm:
   parity: 0.5
 
 logging:
-  file:
-    name: O:/crystalball/logs/motse.log
+  file: /var/crystalball/logs/prod.log
   #  path: O:\crystalball\logs
   #level 日志等级 指定命名空间的日志输出
   level:

@@ -1,15 +1,12 @@
 package ink.moshuier.motse.entity;
 
-import ink.moshuier.motse.enums.UnitDimensionEnum;
+import ink.moshuier.motse.enums.DimensionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -32,8 +29,9 @@ public class UnitEntity extends BaseEntity implements Serializable {
     @Column(name = "symbol", columnDefinition = "VARCHAR(500)")
     private String symbol;
 
-    @Column(name = "unit_type", columnDefinition = "INT", nullable = false)
-    private UnitDimensionEnum unitType;
+    @Column(name = "unit_type", columnDefinition = "VARCHAR(50)", nullable = false)
+    @Convert(converter = DimensionEnum.Converter.class)
+    private DimensionEnum unitType;
 
     @Column(name = "conversion", columnDefinition = "varchar(500)")
     private String conversion;

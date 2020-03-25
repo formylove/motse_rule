@@ -2,10 +2,10 @@ package ink.moshuier.motse.util;
 
 import ink.moshuier.motse.api.bean.dto.BaseDTO;
 import ink.moshuier.motse.bean.SearchCondition;
-import ink.moshuier.motse.enums.PersistableEnum;
+import ink.moshuier.motse.enums.DimensionEnum;
 import ink.moshuier.motse.enums.QuarantsEnum;
-import ink.moshuier.motse.enums.TaskType;
-import ink.moshuier.motse.enums.UnitDimensionEnum;
+import ink.moshuier.motse.enums.TaskTypeEnum;
+import ink.moshuier.motse.enums.util.PersistableEnum;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -39,7 +39,7 @@ public class ControllerAdvice {
 
     }
 
-    @Pointcut("execution(public * ink.moshuier.motse.api.*+.update(..)))")
+    @Pointcut("execution(public * ink.moshuier.motse.api.RestfulController+.update(..)))")
     public void update() {
 
     }
@@ -83,8 +83,8 @@ public class ControllerAdvice {
         Map<String, Object> filters = (Map<String, Object>) args[0];
         final List<SearchCondition> searchConditions = new ArrayList<>();
         Map<String, Function<String, PersistableEnum>> enumMap = new HashMap<>();
-        enumMap.put("Enum_type", TaskType::getEnumFromName);
-        enumMap.put("Enum_unit", UnitDimensionEnum::getEnumFromName);
+        enumMap.put("Enum_type", TaskTypeEnum::getEnumFromName);
+        enumMap.put("Enum_unit", DimensionEnum::getEnumFromName);
         enumMap.put("Enum_quarant", QuarantsEnum::getEnumFromName);
         filters.keySet().stream().filter((key) -> !key.startsWith("_null_") && !key.startsWith("_empty_") && !key.startsWith("_enum_") && !key.startsWith("//"))
                 .forEach((key) -> {

@@ -1,7 +1,7 @@
 package ink.moshuier.motse.bean;
 
 import ink.moshuier.motse.annotation.Projection;
-import ink.moshuier.motse.enums.ConvertDirection;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

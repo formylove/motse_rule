@@ -1,4 +1,4 @@
-package ink.moshuier.motse.enums;
+package ink.moshuier.motse.enums.util;
 
 import lombok.Getter;
 import lombok.Setter;

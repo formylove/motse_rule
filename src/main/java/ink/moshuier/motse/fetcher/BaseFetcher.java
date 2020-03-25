@@ -4,7 +4,7 @@ import ink.moshuier.motse.bean.BaseBean;
 import ink.moshuier.motse.bean.BeanPage;
 import ink.moshuier.motse.bean.SearchCondition;
 import ink.moshuier.motse.entity.BaseEntity;
-import ink.moshuier.motse.enums.ConvertDirection;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 import ink.moshuier.motse.exception.CommonException;
 import ink.moshuier.motse.exception.ErrorCode;
 import ink.moshuier.motse.repository.MtBaseModelRepository;

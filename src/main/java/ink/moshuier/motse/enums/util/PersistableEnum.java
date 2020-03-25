@@ -1,4 +1,4 @@
-package ink.moshuier.motse.enums;
+package ink.moshuier.motse.enums.util;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -10,13 +10,13 @@ import static java.util.stream.Collectors.toList;
 
 public interface PersistableEnum<DB extends Serializable> {
     DB getDbValue();
-
     default String getFullPath() {
         return new StringBuffer(this.getClass().getName())
                 .append(".")
                 .append(this.toString())
                 .toString();
     }
+
 
     abstract class Converter<ENUM extends PersistableEnum<DB>, DB extends Serializable> {
 

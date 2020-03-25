@@ -1,9 +1,9 @@
 package ink.moshuier.motse.bean;
 
 import ink.moshuier.motse.annotation.Projection;
-import ink.moshuier.motse.enums.ConvertDirection;
 import ink.moshuier.motse.enums.QuarantsEnum;
-import ink.moshuier.motse.enums.TaskType;
+import ink.moshuier.motse.enums.TaskTypeEnum;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 public class TaskBean extends BaseBean {
     private String title;
-    private TaskType type;
+    private TaskTypeEnum type;
     //执行频率
     private Integer frequency;
     //价值

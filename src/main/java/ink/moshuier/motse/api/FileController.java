@@ -1,11 +1,13 @@
 package ink.moshuier.motse.api;
 
+import ink.moshuier.motse.annotation.ControllerDefiner;
 import ink.moshuier.motse.api.bean.response.ResponseBean;
 import ink.moshuier.motse.config.OSSClient;
 import ink.moshuier.motse.service.CardService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,9 +20,7 @@ import static ink.moshuier.motse.util.ConstantUtils.IMG_BED_PREFIX;
  * @author : Sarah Xu
  * @date : 2019-05-28
  */
-@Api(value = "静态文件上传下载")
-@RestController
-@RequestMapping("/static")
+@ControllerDefiner(value = "静态文件上传下载", path = "/static")
 public class FileController extends RestfulController {
     @Autowired
     CardService cardService;

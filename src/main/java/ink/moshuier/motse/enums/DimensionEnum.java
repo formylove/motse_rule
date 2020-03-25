@@ -1,5 +1,6 @@
 package ink.moshuier.motse.enums;
 
+import ink.moshuier.motse.enums.util.PersistableEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import javax.persistence.AttributeConverter;
  * @author : Sarah Xu
  * @date : 2019-04-23
  **/
-public enum UnitDimensionEnum implements PersistableEnum<String> {
+public enum DimensionEnum implements PersistableEnum<String> {
     LENGTH("LENGTH", "纳米"),//长度
     HEIGHT("HEIGHT", ""),//高度
     TIME("TIME", "纳秒"),//时间
@@ -29,20 +30,29 @@ public enum UnitDimensionEnum implements PersistableEnum<String> {
     @Setter
     private final String baseLine;
 
-    UnitDimensionEnum(String dbValue, String baseLine) {
+    DimensionEnum(String dbValue, String baseLine) {
         this.dbValue = dbValue;
         this.baseLine = baseLine;
     }
 
+
     @javax.persistence.Converter(autoApply = true)
-    public static class Converter extends PersistableEnum.Converter<UnitDimensionEnum, String>
-            implements AttributeConverter<UnitDimensionEnum, String> {
+    public static class Converter extends PersistableEnum.Converter<DimensionEnum, String>
+            implements AttributeConverter<DimensionEnum, String> {
     }
 
-
-    public static UnitDimensionEnum getEnumFromName(String name) {
-        for (UnitDimensionEnum e : UnitDimensionEnum.values()) {
+    public static DimensionEnum getEnumFromName(String name) {
+        for (DimensionEnum e : DimensionEnum.values()) {
             if (e.name().equalsIgnoreCase(name)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static DimensionEnum getEnumFromDBValue(String dbValue) {
+        for (DimensionEnum e : DimensionEnum.values()) {
+            if (e.getDbValue().equalsIgnoreCase(dbValue)) {
                 return e;
             }
         }

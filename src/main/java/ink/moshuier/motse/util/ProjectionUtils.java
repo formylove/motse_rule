@@ -6,7 +6,7 @@ import ink.moshuier.motse.annotation.ProjectionContainer;
 import ink.moshuier.motse.api.bean.dto.BaseDTO;
 import ink.moshuier.motse.bean.BaseBean;
 import ink.moshuier.motse.entity.BaseEntity;
-import ink.moshuier.motse.enums.ConvertDirection;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;

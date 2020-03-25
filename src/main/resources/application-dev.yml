@@ -19,16 +19,15 @@ spring:
           SQL: DEBUG
 
 
+management:
+  security:
+    enabled: false
 
-
-#    OKTA  /*
-okta:
-  oauth2:
-    issuer: https://dev-114347.okta.com/oauth2/default #token issuer
-    #    client-id: 0oa2u6qprXmnNCRBo4x6
-    #    client-secret: CRXThfWuQ3F3TMvNyIcujLpyvCM3jQTB3DyNO-Me
-    client-id: 0oa34wlkiSTKEk4UB4x6
-
+logging:
+  file: O:/preprod.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
 
 
 

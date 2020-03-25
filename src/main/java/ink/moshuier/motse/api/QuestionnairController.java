@@ -1,5 +1,6 @@
 package ink.moshuier.motse.api;
 
+import ink.moshuier.motse.annotation.ControllerDefiner;
 import ink.moshuier.motse.api.bean.dto.QuestionnairDTO;
 import ink.moshuier.motse.api.bean.response.PageResponseBean;
 import ink.moshuier.motse.api.bean.response.ResponseBean;
@@ -11,7 +12,6 @@ import ink.moshuier.motse.entity.QuestionnairEntity;
 import ink.moshuier.motse.service.QuestionnairService;
 import ink.moshuier.motse.service.TaskService;
 import ink.moshuier.motse.util.ProjectionUtils;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +25,8 @@ import java.util.Map;
  * @author : Sarah Xu
  * @date : 2019-05-28
  */
-@Api(value = "问卷")
-@RestController
-@RequestMapping("/questionnairs")
-public class QuestionnairController extends RestfulController implements BaseApi<QuestionnairDTO, QuestionnairBean> {
+@ControllerDefiner(value = "问卷", path = "/questionnairs")
+public class QuestionnairController extends RestfulController<QuestionnairDTO, QuestionnairBean, QuestionnairService> {
     @Autowired
     QuestionnairService questionnairService;
     @Autowired
@@ -75,9 +73,8 @@ public class QuestionnairController extends RestfulController implements BaseApi
 
     @ApiOperation(value = "查询所有问卷")
     @PostMapping(value = "/")
-    @Override
     public PageResponseBean search(@RequestBody Map<String, Object> filters, @ApiIgnore @RequestParam(required = false) List<SearchCondition> searchConditions, @RequestParam(value = "pageNum", required = false) Integer pageNum, @RequestParam(value = "pageSize", required = false) Integer pageSize, @ApiIgnore Pageable page) {
-        BeanPage<QuestionnairBean, QuestionnairEntity> questionnairs = questionnairService.searchActive(searchConditions, page);
+        BeanPage<QuestionnairBean, QuestionnairEntity> questionnairs = questionnairService.searchActive(searchConditions, page, null, null);
         PageResponseBean<QuestionnairDTO, QuestionnairBean> pageResponseBean = new PageResponseBean<QuestionnairDTO, QuestionnairBean>(questionnairs) {
         };
         return pageResponseBean;

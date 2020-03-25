@@ -18,7 +18,11 @@ spring:
         hibernate:
           SQL: DEBUG
 #    static-path-pattern: /*
-
+logging:
+  file: /var/motse/logs/preprod.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
 
 algorithm:
   parity: 1

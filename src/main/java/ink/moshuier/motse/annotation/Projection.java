@@ -1,7 +1,7 @@
 package ink.moshuier.motse.annotation;
 
 
-import ink.moshuier.motse.enums.ConvertDirection;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 
 import java.lang.annotation.*;
 

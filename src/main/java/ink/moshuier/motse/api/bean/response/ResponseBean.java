@@ -65,8 +65,15 @@ public class ResponseBean<E> {
     }
 
 
+    public static ResponseBean id(Long id) {
+        ResponseBean<Map<String, Object>> responseBean = new ResponseBean<>();
+        responseBean.data = new HashMap<String, Object>();
+        return responseBean.populate("id", id);
+    }
+
+
     public ResponseBean populate(String key, Object value) {
         ((Map<String, Object>) this.data).put(key, value);
         return this;
-  }
+    }
 }

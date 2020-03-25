@@ -5,7 +5,7 @@ import ink.moshuier.motse.bean.BaseBean;
 import ink.moshuier.motse.bean.BeanPage;
 import ink.moshuier.motse.bean.SearchCondition;
 import ink.moshuier.motse.entity.BaseEntity;
-import ink.moshuier.motse.enums.ConvertDirection;
+import ink.moshuier.motse.enums.util.ConvertDirection;
 import ink.moshuier.motse.exception.CommonException;
 import ink.moshuier.motse.exception.ErrorCode;
 import ink.moshuier.motse.repository.MtBaseModelRepository;
@@ -116,28 +116,28 @@ public class BaseDao<BEAN extends BaseBean, ENTITY extends BaseEntity, REPOSITOR
     }
 
     public BeanPage<BEAN, ENTITY> search(Pageable pageable) {
-        return search(null, pageable, true);
+        return search(null, pageable, true, null, null);
     }
 
     public BeanPage<BEAN, ENTITY> searchIncludingInactive(Pageable pageable) {
-        return search(null, pageable, false);
+        return search(null, pageable, false, null, null);
     }
 
     public BeanPage<BEAN, ENTITY> search() {
-        return search(null, null, true);
+        return search(null, null, true, null, null);
     }
 
     public BeanPage<BEAN, ENTITY> search(List<SearchCondition> conditions) {
-        return search(conditions, null, true);
+        return search(conditions, null, true, null, null);
     }
 
-    public BeanPage<BEAN, ENTITY> searchActive(List<SearchCondition> conditions, Pageable pageable) {
-        return search(conditions, pageable, true);
+    public BeanPage<BEAN, ENTITY> searchActive(List<SearchCondition> conditions, Pageable pageable, List<String> desc, List<String> asc) {
+        return search(conditions, pageable, true, desc, asc);
     }
 
-    public BeanPage<BEAN, ENTITY> search(List<SearchCondition> conditions, Pageable pageable, Boolean activeFilter) {
+    public BeanPage<BEAN, ENTITY> search(List<SearchCondition> conditions, Pageable pageable, Boolean activeFilter, List<String> desc, List<String> asc) {
         setRepository();
-        Specification specification = buildSpecification(conditions, activeFilter);
+        Specification specification = buildSpecification(conditions, activeFilter, desc, asc);
         Page<ENTITY> entities = null;
 
         if (Objects.isNull(pageable)) {
@@ -150,7 +150,7 @@ public class BaseDao<BEAN extends BaseBean, ENTITY extends BaseEntity, REPOSITOR
     }
 
 
-    Specification<ENTITY> buildSpecification(List<SearchCondition> conditions, Boolean activeFilter) {
+    Specification<ENTITY> buildSpecification(List<SearchCondition> conditions, Boolean activeFilter, List<String> desc, List<String> asc) {
         Specification<ENTITY> specification =
                 (Root<ENTITY> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) -> {
                     List<Predicate> predicates = new ArrayList<>();
@@ -192,7 +192,20 @@ public class BaseDao<BEAN extends BaseBean, ENTITY extends BaseEntity, REPOSITOR
 
                     Predicate[] p = new Predicate[predicates.size()];
                     criteriaQuery.where(cb.and(predicates.toArray(p)));
-                    criteriaQuery.orderBy(cb.desc(root.get("creationDate")));
+                    if (Objects.nonNull(desc)) {
+                        for (String d : desc) {
+                            criteriaQuery.orderBy(cb.desc(root.get(d)));
+                        }
+                    }
+                    if (Objects.nonNull(asc)) {
+                        for (String a : asc) {
+                            criteriaQuery.orderBy(cb.asc(root.get(a)));
+                        }
+                    }
+                    if (Objects.isNull(asc) && Objects.isNull(desc)) {
+                        criteriaQuery.orderBy(cb.desc(root.get("creationDate")));
+                    }
+
                     return predicates.isEmpty() ? cb.conjunction() : criteriaQuery.getRestriction();
                 };
 

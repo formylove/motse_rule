@@ -1,7 +1,7 @@
 package ink.moshuier.motse.entity;
 
 import ink.moshuier.motse.enums.QuarantsEnum;
-import ink.moshuier.motse.enums.TaskType;
+import ink.moshuier.motse.enums.TaskTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class TaskEntity extends BaseEntity implements Serializable {
     @Column(name = "title", columnDefinition = "VARCHAR(50)", nullable = false)
     private String title;
     @Column(name = "type", columnDefinition = "TINYINT", nullable = false)
-    private TaskType type;
+    private TaskTypeEnum type;
     //执行频率
     @Column(name = "frequency", columnDefinition = "TINYINT", nullable = false)
     private Integer frequency;

@@ -1,12 +1,12 @@
 package ink.moshuier.motse.api.bean.dto;
 
 import ink.moshuier.motse.enums.QuarantsEnum;
-import ink.moshuier.motse.enums.TaskType;
+import ink.moshuier.motse.enums.TaskTypeEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @date : 2020-02-26
  **/
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskDTO extends BaseDTO {
@@ -26,7 +26,7 @@ public class TaskDTO extends BaseDTO {
 
     @ApiModelProperty("当天任务/习惯/长期任务")
     @NotNull
-    private TaskType type;
+    private TaskTypeEnum type;
 
 
     @ApiModelProperty("优先级")
