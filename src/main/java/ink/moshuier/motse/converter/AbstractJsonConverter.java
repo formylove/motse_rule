@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.AttributeConverter;
@@ -17,6 +18,7 @@ import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS
 
 @Slf4j
 @Converter(autoApply = true)
+@NoArgsConstructor
 abstract class AbstractJsonConverter<T> implements AttributeConverter<T, String> {
 
     private static final ObjectMapper JSON =
