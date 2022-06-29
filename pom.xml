@@ -21,7 +21,7 @@
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
         <jwt.version>0.10.5</jwt.version>
         <crypt.version>1.0.1</crypt.version>
-        <poi.version>4.1.0</poi.version>
+        <poi.version>4.1.1</poi.version>
         <swagger.version>2.9.2</swagger.version>
         <typetools.version>0.6.1</typetools.version>
         <graphql.version>5.0.2</graphql.version>
